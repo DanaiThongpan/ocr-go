@@ -27,7 +27,7 @@ type OCRResponseData struct {
 	Pages       int              `json:"pages"`
 	Subjects    []SubjectGradeV3 `json:"subjects"`
 	RawText     string           `json:"raw_text"`
-	DebugImages []string         `json:"debug_images,omitempty"` // ⭐️ เพิ่มบรรทัดนี้สำหรับเก็บรูป Base64
+	DebugImages []string         `json:"debug_images,omitempty"`
 }
 
 type OCRResponse struct {

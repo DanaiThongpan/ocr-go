@@ -41,7 +41,6 @@ func cropImageByMode(filePath string, mode string) error {
 	} else if mode == "top_70" {
 		cropRect = image.Rect(bounds.Min.X, bounds.Min.Y, bounds.Max.X, bounds.Min.Y+int(float64(bounds.Dy())*0.7))
 	} else if mode == "top_one_quarter" {
-		// ⭐️ เปลี่ยนเป็นตัดจากบนลงมา 1/4 (25%) ของความสูง
 		cropRect = image.Rect(bounds.Min.X, bounds.Min.Y, bounds.Max.X, bounds.Min.Y+(bounds.Dy()/4))
 	} else if mode == "bottom_half" {
 		// ⭐️ โหมดตัดเอาเฉพาะครึ่งล่าง
@@ -112,14 +111,11 @@ func ExtractStudentInfo(text string) (prefix, firstName, lastName, nationalID st
 // =========================================================
 // ProcessPDFV3 Orchestrator
 // =========================================================
-// =========================================================
-// ProcessPDFV3 Orchestrator
-// =========================================================
 func ProcessPDFV3(pdfPath string) (string, []models.SubjectGradeV3, string, string, string, string, int, error) {
 	outputDir := os.TempDir()
 	outputPrefix := filepath.Join(outputDir, "go-ocr-img-v3")
 
-	cmd := exec.Command("pdftoppm", "-png", "-r", "300", pdfPath, outputPrefix)
+	cmd := exec.Command("pdftoppm", "-png", "-r", "800", pdfPath, outputPrefix)
 	if err := cmd.Run(); err != nil {
 		return "", nil, "", "", "", "", 0, fmt.Errorf("แปลง PDF ไม่สำเร็จ: %v", err)
 	}
@@ -138,18 +134,16 @@ func ProcessPDFV3(pdfPath string) (string, []models.SubjectGradeV3, string, stri
 	// 1. หั่นรูปภาพ
 	for i, imagePath := range matches {
 		if i == 0 {
-			// หน้า 1: ตัดเอาเฉพาะส่วนบนสุด 1/4
+			// หน้า 1: ตัด 1/4
 			cropImageByMode(imagePath, "top_one_quarter")
 		} else if i == 1 {
-			// หน้า 2: ตัดครึ่งขวาก่อน แล้วตัดเอาความสูง 70% -> ตัดเอาครึ่งล่างของที่เหลือ
-			// ⚠️ อย่าลืมเช็ค debug_images/page_2.png ว่าตัวหนังสือแหว่งไหม! 
+			// ⭐️ หน้า 2: นำการตัด 3 สเต็ปแบบเดิมกลับมา
 			cropImageByMode(imagePath, "right_half")
 			cropImageByMode(imagePath, "top_70")
 			cropImageByMode(imagePath, "bottom_half")
 		}
 	}
 
-	// ก๊อปปี้รูปลงโฟลเดอร์ให้คุณเปิดดู
 	debugDir, _ := filepath.Abs("debug_images")
 	os.MkdirAll(debugDir, os.ModePerm)
 
@@ -170,9 +164,8 @@ func ProcessPDFV3(pdfPath string) (string, []models.SubjectGradeV3, string, stri
 	defer client.Close()
 	client.SetLanguage("tha", "eng")
 	
-	// ⭐️⭐️⭐️ พระเอกอยู่ตรงนี้! บังคับบอก Tesseract ว่ารูปนี้คือ 300 DPI นะ! 
-	// (แก้ปัญหา Go ลบ DPI ทิ้งตอนเซฟรูป)
-	client.SetVariable("user_defined_dpi", "300")
+	client.SetPageSegMode(gosseract.PSM_SINGLE_BLOCK)
+	client.SetVariable("user_defined_dpi", "800")
 
 	var fullTextBuilder strings.Builder
 	var page2Text string
@@ -205,10 +198,14 @@ func ProcessPDFV3(pdfPath string) (string, []models.SubjectGradeV3, string, stri
 
 	return fullText, subjects, prefix, firstName, lastName, nationalID, len(matches), nil
 }
+
 // =========================================================
 // Helper V3: ฟังก์ชันดึงตัวเลขจากข้อความแบบแม่นยำสูง
 // =========================================================
 func extractNumbers(line string) (float64, float64, bool) {
+	// ❌ เอา reSpaceDec ตรงนี้ออกไปเลย เพราะมันดึงเลข "40" กับ "3.75" มาผสมกันเป็น "40.3.75"
+	// ทำให้วิชาภาษาไทยหาเกรดไม่เจอ! เราจะไปดักแก้พวกช่องว่างที่ ExtractGradesV3 แทน
+
 	numberRegex := regexp.MustCompile(`([0-9]+(?:\.[0-9]+)?)`)
 	matches := numberRegex.FindAllString(line, -1)
 
@@ -225,6 +222,7 @@ func extractNumbers(line string) (float64, float64, bool) {
 			gpa, err2 := strconv.ParseFloat(gpaStr, 64)
 
 			if err1 == nil && err2 == nil {
+				// ซ่อมแซม GPA
 				if gpa > 4.0 && gpa <= 400 {
 					if gpa >= 100 {
 						gpa = gpa / 100.0
@@ -236,15 +234,19 @@ func extractNumbers(line string) (float64, float64, bool) {
 					continue
 				}
 
+				// ⭐️ ซ่อมแซม Credit ให้ฉลาดขึ้น ครอบคลุม 40, 14.0, 10.0
 				if credit >= 10 && !strings.Contains(creditStr, ".") {
-					if credit >= 100 {
-						credit = credit / 10.0
-					} else {
-						credit = credit / 10.0
-					}
+					credit = credit / 10.0 // เช่น "40" -> "4.0"
+				}
+				
+				// ถ้าหน่วยกิตอ่านติดมาเป็นหลักสิบ (เช่น 14.0 หรือ 10.0) จับหาร 10 ให้หมด
+				for credit >= 10.0 {
+					credit = credit / 10.0
 				}
 
 				gpa = math.Round(gpa*100) / 100
+				credit = math.Round(credit*100) / 100
+
 				if gpa <= 4.0 && credit > 0 {
 					return credit, gpa, true
 				}
@@ -258,6 +260,25 @@ func extractNumbers(line string) (float64, float64, bool) {
 // V3: Extract Grades (ระบบล็อกเป้าหมาย + เติมข้อมูลในช่องว่าง + Fuzzy Match)
 // =========================================================
 func ExtractGradesV3(text string) []models.SubjectGradeV3 {
+	// ดักจับคำเพี้ยนที่เกิดจาก DPI 1200
+	text = strings.ReplaceAll(text, "ป", "4.0")
+	text = strings.ReplaceAll(text, "ฯ", "4.00")
+	text = strings.ReplaceAll(text, "ผลตี", "4.00")
+	text = strings.ReplaceAll(text, "7วว", "4.00")
+	text = strings.ReplaceAll(text, "ร8", "")
+
+	// ⭐️ 1. ซ่อมจุดทศนิยมที่ OCR อ่านเพี้ยนเป็นเลข 8 (เช่น "28 5|" -> "2.5|")
+	reDotReadAsEight := regexp.MustCompile(`(\d)8\s+([0-9])\s*\|`)
+	text = reDotReadAsEight.ReplaceAllString(text, "${1}.${2}|")
+	reDotReadAsEightBracket := regexp.MustCompile(`(\d)8\s+([0-9])\s*]`)
+	text = reDotReadAsEightBracket.ReplaceAllString(text, "${1}.${2}]")
+
+	// ⭐️ 2. ซ่อมช่องว่างที่ทศนิยมหายไป (เช่น "10 0|" -> "10.0|")
+	reMissingDotSpace := regexp.MustCompile(`(\d)\s+([05])\s*\|`)
+	text = reMissingDotSpace.ReplaceAllString(text, "${1}.${2}|")
+	reMissingDotSpaceBracket := regexp.MustCompile(`(\d)\s+([05])\s*]`)
+	text = reMissingDotSpaceBracket.ReplaceAllString(text, "${1}.${2}]")
+
 	reComma := regexp.MustCompile(`(\d),(\d)`)
 	text = reComma.ReplaceAllString(text, "${1}.${2}")
 
@@ -281,15 +302,15 @@ func ExtractGradesV3(text string) []models.SubjectGradeV3 {
 	}
 
 	anchors := [][]string{
-		{"ภาษาไทย", "ษาไทย"},
-		{"คณิตศาสตร์", "คณิต"},
-		{"วิทยาศาสตร์", "ทยาศาสตร์"},
-		{"สังคม", "ศาสนา"},
-		{"สุขศึกษา", "พลศึกษา"},
-		{"ศิลปะ", "ศลปะ"},
-		{"การงาน"},
-		{"อังกฤษ", "ต่างประเทศ", "ภาษาต่าง"},
-		{"การศึกษา", "ค้นคว้า", "is", "ด้วยตนเอง", "(5)"},
+		{"ภาษาไทย", "ษาไทย", "ภาษ", "ไทย", "ภาษา", "าไทย", "ทศไทย"},
+		{"คณิตศาสตร์", "คณิต", "ศาสตร", "คณิ", "ตศาสตร์", "คณต", "ณตศาส"},
+		{"วิทยาศาสตร์", "ทยาศาสตร์", "วิทยาศาสตร์และเทคโนโลยี", "เทคโนโลยี", "วิทยา", "เทคโน", "โลยี", "และเทค", "วทยา", "วทยาศาส", "ทคโนโลยี"},
+		{"สังคม", "ศาสนา", "วัฒนธรรม", "สังคมศึกษา", "และวัฒน", "ธรรม", "คมศึกษา", "สงคม", "วฒนธร"},
+		{"สุขศึกษา", "พลศึกษา", "สุขศึ", "พลศึ", "และพล", "ขศึกษา", "สขศกษา", "สขศก"},
+		{"ศิลปะ", "ศลปะ", "ศิลป", "ศลป", "ศล", "ลปะ"},
+		{"การงาน", "อาชีพ", "การงานอา", "งานอาชีพ", "การงา", "อาชพ"},
+		{"อังกฤษ", "ต่างประเทศ", "ภาษาต่าง", "ต่างประ", "เทศ", "อังก", "องกฤษ", "ต่างประเท", "ตางประเทศ"},
+		{"การศึกษา", "ค้นคว้า", "is", "ด้วยตนเอง", "(5)", "(is)", "ค้น", "คว้า", "ด้วยตน", "ษาค้น", "ตนเอง"},
 	}
 
 	results := make([]models.SubjectGradeV3, len(subjectNames))

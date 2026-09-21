@@ -1,9 +1,8 @@
 package services
 
 // =========================================================
-// Helper Functions (ใช้งานร่วมกันทุก Version)
+// V3 Helper Functions
 // =========================================================
-
 func floatPtr(v float64) *float64 {
 	return &v
 }
