@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR System Live Monitor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; height: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #1e293b; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        
+        .pulse { animation: pulse-animation 2s infinite; }
+        @keyframes pulse-animation {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+    </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden">
+    <!-- Sticky Header -->
+    <header class="bg-slate-900 border-b border-slate-700/50 p-4 sticky top-0 z-10 shadow-md">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                <h1 class="text-xl font-bold tracking-wide">OCR System Live Monitor</h1>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-800 px-4 py-1.5 rounded-full border border-slate-700">
+                <div id="status-dot" class="w-2.5 h-2.5 bg-green-500 rounded-full pulse"></div>
+                <span id="status-text" class="text-sm font-medium text-slate-300">Live Connected</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-hidden p-4 sm:p-6 lg:p-8 flex justify-center">
+        <div class="w-full max-w-6xl h-full flex flex-col bg-slate-800/50 border border-slate-700 rounded-xl shadow-2xl">
+            <!-- Table Header -->
+            <div class="grid grid-cols-12 gap-4 px-6 py-4 border-b border-slate-700 bg-slate-800/80 rounded-t-xl text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                <div class="col-span-2">Time</div>
+                <div class="col-span-2">Status</div>
+                <div class="col-span-3">Uploaded File(s)</div>
+                <div class="col-span-2 text-right">Processing Time</div>
+                <div class="col-span-2 text-right">Client IP</div>
+                <div class="col-span-1 text-center">Action</div>
+            </div>
+
+            <!-- Logs Container -->
+            <div id="logs-container" class="custom-scrollbar flex-1 overflow-y-auto p-4 space-y-3">
+                <div class="flex items-center justify-center h-full text-slate-500 italic" id="empty-state">
+                    Waiting for incoming OCR requests...
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Overlay -->
+    <div id="details-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-slate-800 border border-slate-700 shadow-2xl rounded-xl w-full max-w-5xl max-h-[95vh] flex flex-col transform scale-95 transition-transform duration-300">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center p-5 border-b border-slate-700">
+                <h2 class="text-lg font-bold text-slate-100 flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Request Details
+                </h2>
+                <button id="close-modal-btn" class="text-slate-400 hover:text-slate-200 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <!-- Modal Body -->
+            <div id="modal-content" class="custom-scrollbar p-6 overflow-y-auto flex-1 text-sm text-slate-300">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const logsContainer = document.getElementById('logs-container');
+        const emptyState = document.getElementById('empty-state');
+        const statusDot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+
+        const modal = document.getElementById('details-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        let eventSource;
+        let activeBlobUrl = null;
+
+        function connectSSE() {
+            eventSource = new EventSource('/logs/live');
+
+            eventSource.onopen = () => {
+                statusDot.className = 'w-2.5 h-2.5 bg-green-500 rounded-full pulse';
+                statusText.textContent = 'Live Connected';
+            };
+
+            eventSource.addEventListener('message', (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (emptyState) emptyState.style.display = 'none';
+                    appendLog(data);
+                } catch (err) {
+                    console.error("Error parsing JSON:", err);
+                }
+            });
+
+            eventSource.onerror = () => {
+                statusDot.className = 'w-2.5 h-2.5 bg-red-500 rounded-full';
+                statusText.textContent = 'Disconnected - Reconnecting...';
+                eventSource.close();
+                setTimeout(connectSSE, 3000);
+            };
+        }
+
+        function appendLog(data) {
+            const row = document.createElement('div');
+            const date = new Date(data.timestamp);
+            const timeString = date.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second:'2-digit' });
+
+            let statusColor = 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+            let statusText = `Pending (${data.status})`;
+            let statusIcon = `<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+
+            if (data.status >= 200 && data.status < 300) {
+                statusColor = 'bg-green-500/20 text-green-400 border-green-500/30';
+                statusText = `Success (${data.status})`;
+                statusIcon = `<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            } else if (data.status >= 400 && data.status < 500) {
+                statusColor = 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
+                statusText = `Client Error (${data.status})`;
+                statusIcon = `<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>`;
+            } else if (data.status >= 500) {
+                statusColor = 'bg-red-500/20 text-red-400 border-red-500/30';
+                statusText = `Server Error (${data.status})`;
+                statusIcon = `<svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`;
+            }
+
+            const filesList = data.file_names && data.file_names.length > 0 ? data.file_names.join(', ') : 'No File';
+            
+            let secStr = '';
+            if (data.latency_ms >= 60000) {
+                const m = Math.floor(data.latency_ms / 60000);
+                const s = Math.floor((data.latency_ms % 60000) / 1000);
+                secStr = `${m}m ${s}s`;
+            } else {
+                secStr = `${(data.latency_ms / 1000).toFixed(2)}s`;
+            }
+            
+            row.className = 'grid grid-cols-12 gap-4 px-6 py-4 items-center bg-slate-800/80 hover:bg-slate-700/50 border border-slate-700/80 rounded-lg transition-colors duration-200';
+            
+            row.innerHTML = `
+                <div class="col-span-2 text-sm text-slate-400 font-mono">${timeString}</div>
+                <div class="col-span-2">
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${statusColor}">
+                        ${statusIcon}
+                        ${statusText}
+                    </span>
+                </div>
+                <div class="col-span-3 flex items-center space-x-3 overflow-hidden">
+                    <div class="p-2 bg-slate-700/50 rounded text-slate-400 flex-shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="flex flex-col truncate">
+                        <span class="text-sm font-medium text-slate-200 truncate">${filesList}</span>
+                        <span class="text-xs text-slate-500">${data.total_size_mb.toFixed(2)} MB</span>
+                    </div>
+                </div>
+                <div class="col-span-2 text-right">
+                    <span class="text-sm font-mono bg-slate-900 px-2 py-1 rounded text-emerald-400 border border-slate-700">${secStr}</span>
+                </div>
+                <div class="col-span-2 text-right">
+                    <span class="text-sm text-slate-400 font-mono">${data.ip}</span>
+                </div>
+                <div class="col-span-1 flex justify-center">
+                    <button class="view-details-btn p-1.5 bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white rounded transition-colors" title="View Details">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </button>
+                </div>
+            `;
+
+            row.querySelector('.view-details-btn').addEventListener('click', () => openModal(data, secStr));
+            logsContainer.appendChild(row);
+            
+            logsContainer.scrollTo({
+                top: logsContainer.scrollHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        // Modal Logic
+        function openModal(data, secStr) {
+            modalContent.innerHTML = '';
+            
+            // Revoke old blob to save memory
+            if (activeBlobUrl) {
+                URL.revokeObjectURL(activeBlobUrl);
+                activeBlobUrl = null;
+            }
+
+            const filesList = data.file_names && data.file_names.length > 0 ? data.file_names.join(', ') : 'No File';
+            
+            const metaInfo = `
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 bg-slate-900/50 p-4 rounded-lg border border-slate-700/50 mb-6">
+                    <div><span class="text-slate-500 block text-xs uppercase mb-1">Time</span><span class="font-mono text-slate-300 text-sm">${new Date(data.timestamp).toLocaleTimeString()}</span></div>
+                    <div><span class="text-slate-500 block text-xs uppercase mb-1">Latency</span><span class="text-emerald-400 font-mono text-sm">${secStr}</span></div>
+                    <div class="sm:col-span-2"><span class="text-slate-500 block text-xs uppercase mb-1">Files Uploaded</span><span class="text-slate-300 text-sm">${filesList} (${data.total_size_mb.toFixed(2)} MB)</span></div>
+                </div>
+            `;
+
+            let sectionA = '';
+            if (data.status >= 400) {
+                sectionA = `
+                    <div class="bg-red-500/10 border border-red-500/30 p-5 rounded-lg mb-6">
+                        <h3 class="text-red-400 font-bold mb-3 flex items-center text-base">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                            Error Details
+                        </h3>
+                        <p class="text-red-200 font-mono text-sm whitespace-pre-wrap">${data.error_message || 'No error details provided.'}</p>
+                    </div>
+                `;
+            } else {
+                const jsonStr = JSON.stringify(data.api_response, null, 2);
+                sectionA = `
+                    <div class="bg-slate-900 border border-slate-700 p-5 rounded-lg mb-6">
+                        <h3 class="text-emerald-400 font-bold mb-3 flex items-center text-base">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            API Extracted JSON Response
+                        </h3>
+                        <pre class="custom-scrollbar overflow-x-auto text-sm font-mono text-slate-300 p-4 bg-[#0d1117] rounded-md border border-slate-700"><code>${syntaxHighlight(jsonStr)}</code></pre>
+                    </div>
+                `;
+            }
+
+            let sectionB = '';
+            if (data.file_base64) {
+                sectionB = `
+                    <div class="bg-slate-800 border border-slate-700 p-5 rounded-lg mb-2">
+                        <h3 class="text-blue-400 font-bold mb-4 flex items-center text-base">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                            Document Preview
+                        </h3>
+                        <div class="w-full bg-slate-900 rounded-lg flex items-center justify-center overflow-hidden border border-slate-700 min-h-[300px]" id="preview-container">
+                            <div class="p-8 text-slate-500 animate-pulse">Loading preview...</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            modalContent.innerHTML = metaInfo + sectionA + sectionB;
+
+            // Render Preview Async
+            if (data.file_base64) {
+                setTimeout(() => {
+                    const previewContainer = document.getElementById('preview-container');
+                    const mime = data.file_base64.split(';')[0].split(':')[1];
+                    
+                    if (mime.startsWith('image/')) {
+                        previewContainer.innerHTML = `<img src="${data.file_base64}" alt="Uploaded Image" class="max-w-full h-auto max-h-[600px] object-contain rounded">`;
+                    } else if (mime === 'application/pdf') {
+                        try {
+                            const b64Data = data.file_base64.split(',')[1];
+                            const byteCharacters = atob(b64Data);
+                            const byteNumbers = new Array(byteCharacters.length);
+                            for (let i = 0; i < byteCharacters.length; i++) {
+                                byteNumbers[i] = byteCharacters.charCodeAt(i);
+                            }
+                            const byteArray = new Uint8Array(byteNumbers);
+                            const blob = new Blob([byteArray], {type: 'application/pdf'});
+                            
+                            activeBlobUrl = URL.createObjectURL(blob);
+                            previewContainer.innerHTML = `<iframe src="${activeBlobUrl}#toolbar=0" width="100%" height="600px" class="border-0 rounded bg-white"></iframe>`;
+                        } catch(e) {
+                            previewContainer.innerHTML = `<div class="p-8 text-red-400">Error rendering PDF preview.</div>`;
+                        }
+                    } else {
+                        previewContainer.innerHTML = `<div class="p-8 text-slate-400">Preview not available for this file type (${mime}).</div>`;
+                    }
+                }, 50);
+            }
+
+            modal.classList.remove('hidden');
+            void modal.offsetWidth; // Trigger reflow
+            modal.classList.remove('opacity-0');
+            modal.querySelector('div').classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                if (activeBlobUrl) {
+                    URL.revokeObjectURL(activeBlobUrl);
+                    activeBlobUrl = null;
+                }
+            }, 300);
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function syntaxHighlight(json) {
+            if (!json) return '';
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                let cls = 'text-blue-300';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'text-purple-300 font-semibold';
+                    } else {
+                        cls = 'text-green-300';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'text-yellow-300';
+                } else if (/null/.test(match)) {
+                    cls = 'text-red-400';
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+
+        connectSSE();
+    </script>
+</body>
+</html>

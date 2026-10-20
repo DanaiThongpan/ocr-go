@@ -1,15 +1,55 @@
-version: '3.8' # เพิ่มระบุเวอร์ชันตรงนี้
+version: '3.8'
 
 services:
-  ocr-api:
-    build: 
+  # Container 1
+  ocr-api-1:
+    build:
       context: .
       dockerfile: Dockerfile
-    container_name: my-ocr-api
-    ports:
-      - "8080:8080"
+    container_name: ocr-api-1
     environment:
       - PORT=8080
       - GIN_MODE=release
     restart: unless-stopped
-    # สังเกตว่าไม่มีการใช้ volumes เพื่อเมาท์โฟลเดอร์โค้ดแล้ว
+    volumes:
+      - ./server.log:/app/server.log
+
+  # Container 2
+  ocr-api-2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ocr-api-2
+    environment:
+      - PORT=8080
+      - GIN_MODE=release
+    restart: unless-stopped
+    volumes:
+      - ./server.log:/app/server.log
+
+  # Container 3
+  ocr-api-3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ocr-api-3
+    environment:
+      - PORT=8080
+      - GIN_MODE=release
+    restart: unless-stopped
+    volumes:
+      - ./server.log:/app/server.log
+
+  # Load Balancer
+  nginx:
+    image: nginx:latest
+    container_name: ocr-loadbalancer
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - ocr-api-1
+      - ocr-api-2
+      - ocr-api-3
+    restart: always

@@ -2,48 +2,75 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
 	"os"
+	"time"
 
-	"ocr-go/handlers" // ชื่อ Module ต้องตรงกับใน go.mod
+	"ocr-go/handlers"
+	"ocr-go/middlewares"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
+const (
+	maxMemory     = 32 << 20 // 32 MB
+	maxUploadSize = 50 << 20 // 50 MB
+)
+
+func limitUploadSize(limit int64) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Request.Body = http.MaxBytesReader(c.Writer, c.Request.Body, limit)
+		c.Next()
+	}
+}
+
 func main() {
-	router := gin.Default()
+	// 1. Initialize Middlewares
+	middlewares.InitLogger()
+	middlewares.SetupLogHook()
+	middlewares.InitConcurrency(4) // Max 4 concurrent ProcessPDFV3
 
-	// 1. ตั้งค่า CORS (อนุญาตให้ทุกโดเมนเรียกใช้งาน API ได้)
+	// Disable default gin logger since we have a custom structured one
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
+	router.Use(gin.Recovery())
 	router.Use(cors.Default())
+	router.MaxMultipartMemory = maxMemory
 
-	// 2. จำกัดขนาดหน่วยความจำสำหรับการอัปโหลดไฟล์ (8 MB)
-	router.MaxMultipartMemory = 8 << 20
+	// Dashboard UI
+	router.StaticFile("/", "./index.html")
 
-	// Routes
-	router.GET("/api/v1/health", handlers.HealthCheck)
+	// Health and Live Logs
+	router.GET("/api/v3/health", handlers.HealthCheck)
+	router.GET("/logs/live", handlers.LiveLogs)
 
 	// API Versions
-	router.POST("/api/v1/ocr", handlers.UploadOCR)       // V1 (ตัวเดิม)
-	router.POST("/api/v2/ocr", handlers.UploadOCRV2)     // V2 (คาดเดาคำผิด)
-	router.POST("/api/v3/ocr", handlers.UploadOCRV3)     // V3 (ครอบตัดรูป + ดึงข้อมูลนักเรียน)
+	ocr := router.Group("/api", limitUploadSize(maxUploadSize))
+	// Apply Global Protection & Logging Middlewares
+	ocr.Use(middlewares.IPRateLimiter())
+	ocr.Use(middlewares.OCRLoggerMiddleware())
+	ocr.Use(middlewares.ConcurrencyLimiter(15 * time.Second)) // Wait in queue max 15s
+	{
+		ocr.POST("/v3/ocr", handlers.UploadOCRV3)
+	}
 
-	// กำหนด Port
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "8888"
 	}
 
-	fmt.Println("========================================")
-	fmt.Println("         Go OCR API Started")
-	fmt.Println("========================================")
+	fmt.Printf("========================================\n")
+	fmt.Printf("         Go OCR API Started\n")
+	fmt.Printf("========================================\n")
 	fmt.Printf("Server : http://localhost:%s\n", port)
-	fmt.Println("GET    : /api/v1/health")
-	fmt.Println("POST   : /api/v1/ocr (เวอร์ชัน 1 - default)")
-	fmt.Println("POST   : /api/v2/ocr (เวอร์ชัน 2 - ระบบคาดเดาเกรดที่ผิดเพี้ยน)")
-	fmt.Println("POST   : /api/v3/ocr (เวอร์ชัน 3 - ระบบครอบตัดรูปภาพเพื่อเพิ่มความแม่นยำ)")
-	fmt.Println("========================================")
+	fmt.Printf("Max upload size : %d MB\n", maxUploadSize>>20)
+	fmt.Printf("Dashboard : http://localhost:%s/\n", port)
+	fmt.Printf("Live logs : http://localhost:%s/logs/live\n", port)
+	fmt.Printf("========================================\n")
 
 	if err := router.Run(":" + port); err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 }

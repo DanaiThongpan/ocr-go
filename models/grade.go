@@ -26,6 +26,7 @@ type OCRResponseData struct {
 	NationalID  string           `json:"national_id"`
 	Pages       int              `json:"pages"`
 	Subjects    []SubjectGradeV3 `json:"subjects"`
+	GPAX        *float64         `json:"gpax"`
 	RawText     string           `json:"raw_text"`
 	DebugImages []string         `json:"debug_images,omitempty"`
 }

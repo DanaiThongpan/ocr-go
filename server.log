@@ -1,0 +1,410 @@
+{"level":"info","msg":"Go OCR API Started on port 9999","time":"2026-10-07T10:21:09+07:00"}
+{"level":"info","msg":"Live logs available at: http://localhost:9999/logs/live","time":"2026-10-07T10:21:09+07:00"}
+{"content_type":"multipart/form-data","file_names":["sci374.pdf"],"files_count":1,"ip":"::1","latency_ms":34092,"level":"info","method":"POST","msg":"Processed OCR Request","path":"/api/v3/ocr","status":200,"time":"2026-10-07T10:22:26+07:00","total_size_mb":0.8579015731811523}
+{"level":"info","msg":"Go OCR API Started on port 9999","time":"2026-10-07T10:23:25+07:00"}
+{"level":"info","msg":"Live logs available at: http://localhost:9999/logs/live","time":"2026-10-07T10:23:25+07:00"}
+{"content_type":"multipart/form-data","file_names":["ปพ ไทยไม่ตรง.pdf"],"files_count":1,"ip":"::1","latency_ms":8116,"level":"info","method":"POST","msg":"Processed OCR Request","path":"/api/v3/ocr","status":200,"time":"2026-10-07T10:23:48+07:00","total_size_mb":0.636810302734375}
+{"content_type":"multipart/form-data","file_names":["ปพ ไทยไม่ตรง.pdf"],"files_count":1,"ip":"::1","latency_ms":8610,"level":"info","method":"POST","msg":"Processed OCR Request","path":"/api/v3/ocr","status":200,"time":"2026-10-07T10:24:31+07:00","total_size_mb":0.636810302734375}
+{"content_type":"multipart/form-data","file_names":["999.pdf"],"files_count":1,"ip":"::1","latency_ms":14225,"level":"info","method":"POST","msg":"Processed OCR Request","path":"/api/v3/ocr","status":200,"time":"2026-10-07T10:24:35+07:00","total_size_mb":0.8580856323242188}
+{"content_type":"multipart/form-data","file_names":["sci374.pdf"],"files_count":1,"ip":"::1","latency_ms":38616,"level":"info","method":"POST","msg":"Processed OCR Request","path":"/api/v3/ocr","status":200,"time":"2026-10-07T10:25:04+07:00","total_size_mb":0.8579015731811523}
+2026/10/07 10:33:24 Status: 200, Latency: 8.53s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 10:33:33 Status: 200, Latency: 13.95s, Files: 999.pdf, IP: ::1
+2026/10/07 10:33:49 Status: 200, Latency: 35.93s, Files: sci374.pdf, IP: ::1
+2026/10/07 10:34:43 Status: 200, Latency: 12.72s, Files: 999.pdf, IP: ::1
+2026/10/07 10:39:02 Status: 200, Latency: 8.22s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 10:39:05 Status: 200, Latency: 13.34s, Files: 999.pdf, IP: ::1
+2026/10/07 10:39:30 Status: 200, Latency: 0.80s, Files: 1.png, IP: ::1
+2026/10/07 10:39:31 Status: 200, Latency: 34.61s, Files: sci374.pdf, IP: ::1
+2026/10/07 10:39:49 Status: 200, Latency: 1.02s, Files: download.jpeg, IP: ::1
+2026/10/07 10:40:16 Status: 200, Latency: 1.05s, Files: ภาพถ่ายหน้าจอ 2569-09-29 เวลา 09.52.11.png, IP: ::1
+2026/10/07 10:40:49 Status: 200, Latency: 13.12s, Files: 888.pdf, IP: ::1
+2026/10/07 10:57:54 Status: 200, Latency: 8.29s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 10:57:56 Status: 200, Latency: 12.10s, Files: 888.pdf, IP: ::1
+2026/10/07 10:58:24 Status: 200, Latency: 8.18s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 10:58:25 Status: 200, Latency: 36.10s, Files: sci374.pdf, IP: ::1
+2026/10/07 10:58:30 Status: 200, Latency: 11.98s, Files: 888.pdf, IP: ::1
+2026/10/07 11:01:02 Status: 200, Latency: 7.70s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 11:01:13 Status: 200, Latency: 11.73s, Files: 888.pdf, IP: ::1
+2026/10/07 11:01:33 Status: 200, Latency: 23.35s, Files: DOC01_9701019005580.pdf, IP: 192.168.15.204
+2026/10/07 11:01:45 Status: 200, Latency: 35.62s, Files: sci374.pdf, IP: ::1
+2026/10/07 11:02:05 Status: 200, Latency: 27.08s, Files: DOC01_9701019005638.pdf, IP: 192.168.15.204
+2026/10/07 11:06:27 Status: 200, Latency: 288.76s, Files: DOC01_9701019005674.pdf, IP: 192.168.15.204
+2026/10/07 11:07:15 Status: 500, Latency: 0.05s, Files: DOC13_9701019005760.pdf, IP: 192.168.15.204
+2026/10/07 11:07:29 Status: 200, Latency: 12.11s, Files: DOC01_9701019005770.pdf, IP: 192.168.15.204
+2026/10/07 11:07:58 Status: 200, Latency: 40.27s, Files: DOC01_9701019005784.pdf, IP: 192.168.15.204
+2026/10/07 11:07:58 Status: 500, Latency: 11.48s, Files: DOC13_9701019005760.pdf, IP: 192.168.15.204
+2026/10/07 11:08:29 Status: 500, Latency: 0.05s, Files: DOC13_9701019005760.pdf, IP: 192.168.15.204
+2026/10/07 11:08:49 Status: 500, Latency: 0.05s, Files: DOC13_9701019005760.pdf, IP: 192.168.15.204
+2026/10/07 11:09:04 Status: 200, Latency: 107.71s, Files: DOC01_9701019005769.pdf, IP: 192.168.15.204
+2026/10/07 11:09:39 Status: 200, Latency: 12.06s, Files: DOC01_9701019005770.pdf, IP: 192.168.15.204
+2026/10/07 11:10:09 Status: 200, Latency: 7.06s, Files: DOC01_9701019005942.pdf, IP: 192.168.15.204
+2026/10/07 11:10:09 Status: 200, Latency: 7.00s, Files: DOC01_9701019005959.pdf, IP: 192.168.15.204
+2026/10/07 11:10:15 Status: 200, Latency: 12.64s, Files: DOC01_9701019005964.pdf, IP: 192.168.15.204
+2026/10/07 11:10:55 Status: 200, Latency: 19.27s, Files: DOC01_9701019006079.pdf, IP: 192.168.15.204
+2026/10/07 11:11:02 Status: 200, Latency: 31.90s, Files: DOC01_9701019006016.pdf, IP: 192.168.15.204
+2026/10/07 11:11:17 Status: 200, Latency: 305.47s, Files: DOC01_9701019005674.pdf, IP: 192.168.15.204
+2026/10/07 11:11:25 Status: 200, Latency: 6.87s, Files: DOC01_9701019006200.pdf, IP: 192.168.15.204
+2026/10/07 11:11:54 Status: 200, Latency: 6.96s, Files: DOC01_9701019006200.pdf, IP: 192.168.15.204
+2026/10/07 11:12:19 Status: 200, Latency: 9.73s, Files: DOC01_9701019006247.pdf, IP: 192.168.15.204
+2026/10/07 11:12:20 Status: 200, Latency: 11.76s, Files: DOC01_9701019006230.pdf, IP: 192.168.15.204
+2026/10/07 11:12:30 Status: 200, Latency: 19.52s, Files: DOC01_9701019006262.pdf, IP: 192.168.15.204
+2026/10/07 11:12:46 Status: 200, Latency: 338.21s, Files: DOC01_9701019005695.pdf, IP: 192.168.15.204
+2026/10/07 11:16:35 Status: 200, Latency: 265.56s, Files: DOC01_9701019006259.pdf, IP: 192.168.15.204
+2026/10/07 11:17:52 Status: 200, Latency: 11.41s, Files: 888.pdf, IP: ::1
+2026/10/07 11:18:24 Status: 200, Latency: 11.27s, Files: 888.pdf, IP: ::1
+2026/10/07 11:19:20 Status: 500, Latency: 0.08s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:21:15 Status: 500, Latency: 0.05s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:21:32 Status: 500, Latency: 0.04s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:21:49 Status: 500, Latency: 0.03s, Files: DOC13_9701019006301.pdf, IP: 192.168.15.204
+2026/10/07 11:21:54 Status: 500, Latency: 0.03s, Files: DOC13_9701019006301.pdf, IP: 192.168.15.204
+2026/10/07 11:21:55 Status: 500, Latency: 0.04s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:22:11 Status: 500, Latency: 0.08s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:22:13 Status: 500, Latency: 0.06s, Files: DOC13_9701019006301.pdf, IP: 192.168.15.204
+2026/10/07 11:22:15 Status: 500, Latency: 0.05s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:22:16 Status: 500, Latency: 0.03s, Files: DOC13_9701019006301.pdf, IP: 192.168.15.204
+2026/10/07 11:22:28 Status: 200, Latency: 187.38s, Files: DOC01_9701019006263.pdf, IP: 192.168.15.204
+2026/10/07 11:25:06 Status: 200, Latency: 188.43s, Files: DOC01_9701019006263.pdf, IP: 192.168.15.204
+2026/10/07 11:34:38 Status: 200, Latency: 11.06s, Files: 888.pdf, IP: ::1
+2026/10/07 11:35:29 Status: 200, Latency: 11.64s, Files: 888.pdf, IP: ::1
+2026/10/07 11:35:54 Status: 200, Latency: 34.23s, Files: sci374.pdf, IP: ::1
+2026/10/07 11:36:11 Status: 500, Latency: 0.08s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:36:36 Status: 500, Latency: 0.06s, Files: DOC13_9701019006296.pdf, IP: 192.168.15.204
+2026/10/07 11:36:45 Status: 500, Latency: 0.06s, Files: DOC13_9701019006301.pdf, IP: 192.168.15.204
+2026/10/07 11:41:41 Status: 200, Latency: 8.20s, Files: DOC01_9701019006332.pdf, IP: 192.168.15.204
+2026/10/07 11:41:46 Status: 200, Latency: 8.35s, Files: DOC01_9701019006325.pdf, IP: 192.168.15.204
+2026/10/07 11:42:27 Status: 200, Latency: 8.16s, Files: DOC01_9701019006325.pdf, IP: 192.168.15.204
+2026/10/07 11:43:03 Status: 200, Latency: 10.16s, Files: DOC01_9701019006385.pdf, IP: 192.168.15.204
+2026/10/07 11:43:19 Status: 200, Latency: 27.61s, Files: DOC01_9701019006354.pdf, IP: 192.168.15.204
+2026/10/07 11:45:37 Status: 500, Latency: 0.07s, Files: DOC01_9701019006459.pdf, IP: 192.168.15.204
+2026/10/07 11:45:50 Status: 200, Latency: 10.58s, Files: DOC01_9701019006502.pdf, IP: 192.168.15.204
+2026/10/07 11:45:54 Status: 200, Latency: 15.43s, Files: DOC01_9701019006482.pdf, IP: 192.168.15.204
+2026/10/07 11:59:00 Status: 200, Latency: 10.41s, Files: DOC01_9701019006510.pdf, IP: 192.168.15.204
+2026/10/07 11:59:22 Status: 200, Latency: 17.76s, Files: DOC01_9701019006545.pdf, IP: 192.168.15.204
+2026/10/07 12:00:34 Status: 200, Latency: 11.49s, Files: DOC01_9701019006546.pdf, IP: 192.168.15.204
+2026/10/07 12:00:43 Status: 200, Latency: 19.02s, Files: DOC01_9701019006583.pdf, IP: 192.168.15.204
+2026/10/07 12:00:51 Status: 200, Latency: 118.93s, Files: DOC01_9701019006526.pdf, IP: 192.168.15.204
+2026/10/07 12:00:54 Status: 200, Latency: 29.54s, Files: DOC01_9701019006596.pdf, IP: 192.168.15.204
+2026/10/07 12:01:22 Status: 200, Latency: 3.26s, Files: DOC01_9701019006635.pdf, IP: 192.168.15.204
+2026/10/07 12:01:27 Status: 200, Latency: 8.38s, Files: DOC01_9701019006643.pdf, IP: 192.168.15.204
+2026/10/07 12:02:03 Status: 200, Latency: 3.24s, Files: DOC01_9701019006635.pdf, IP: 192.168.15.204
+2026/10/07 12:02:31 Status: 200, Latency: 3.21s, Files: DOC01_9701019006635.pdf, IP: 192.168.15.204
+2026/10/07 12:02:50 Status: 200, Latency: 90.34s, Files: DOC01_9701019006620.pdf, IP: 192.168.15.204
+2026/10/07 12:03:32 Status: 200, Latency: 187.32s, Files: DOC01_9701019006612.pdf, IP: 192.168.15.204
+2026/10/07 12:04:03 Status: 200, Latency: 90.98s, Files: DOC01_9701019006620.pdf, IP: 192.168.15.204
+2026/10/07 12:05:29 Status: 200, Latency: 101.05s, Files: DOC01_9701019006651.pdf, IP: 192.168.15.204
+2026/10/07 12:06:43 Status: 200, Latency: 105.70s, Files: DOC01_9701019006651.pdf, IP: 192.168.15.204
+2026/10/07 12:06:56 Status: 200, Latency: 83.88s, Files: DOC01_9701019006792.pdf, IP: 192.168.15.204
+2026/10/07 12:07:22 Status: 500, Latency: 0.09s, Files: DOC13_9701019006860.pdf, IP: 192.168.15.204
+2026/10/07 12:07:34 Status: 200, Latency: 122.76s, Files: DOC01_9701019006761.pdf, IP: 192.168.15.204
+2026/10/07 12:07:55 Status: 500, Latency: 0.07s, Files: DOC13_9701019006860.pdf, IP: 192.168.15.204
+2026/10/07 12:07:59 Status: 500, Latency: 0.06s, Files: DOC13_9701019006860.pdf, IP: 192.168.15.204
+2026/10/07 12:08:35 Status: 200, Latency: 9.57s, Files: DOC01_9701019006904.pdf, IP: 192.168.15.204
+2026/10/07 12:09:30 Status: 200, Latency: 121.60s, Files: DOC01_9701019006849.pdf, IP: 192.168.15.204
+2026/10/07 12:10:26 Status: 500, Latency: 0.10s, Files: DOC13_9701019006984.pdf, IP: 192.168.15.204
+2026/10/07 12:10:42 Status: 200, Latency: 15.56s, Files: DOC01_9701019006997.pdf, IP: 192.168.15.204
+2026/10/07 12:11:40 Status: 500, Latency: 0.03s, Files: DOC01_9701019007147.pdf, IP: 192.168.15.204
+2026/10/07 12:12:11 Status: 500, Latency: 0.04s, Files: DOC01_9701019007170.pdf, IP: 192.168.15.204
+2026/10/07 12:12:12 Status: 500, Latency: 0.03s, Files: DOC01_9701019007171.pdf, IP: 192.168.15.204
+2026/10/07 12:12:12 Status: 500, Latency: 0.05s, Files: DOC01_9701019007174.pdf, IP: 192.168.15.204
+2026/10/07 12:12:15 Status: 200, Latency: 36.84s, Files: DOC01_9701019007131.pdf, IP: 192.168.15.204
+2026/10/07 12:12:19 Status: 200, Latency: 5.77s, Files: DOC01_9701019007176.pdf, IP: 192.168.15.204
+2026/10/07 12:12:32 Status: 200, Latency: 5.67s, Files: DOC01_9701019007176.pdf, IP: 192.168.15.204
+2026/10/07 12:12:43 Status: 200, Latency: 8.41s, Files: DOC01_9701019007237.pdf, IP: 192.168.15.204
+2026/10/07 12:13:03 Status: 200, Latency: 27.02s, Files: DOC01_9701019007247.pdf, IP: 192.168.15.204
+2026/10/07 12:13:20 Status: 200, Latency: 138.38s, Files: DOC01_9701019007047.pdf, IP: 192.168.15.204
+2026/10/07 12:14:58 Status: 200, Latency: 6.47s, Files: DOC01_9701019007270.pdf, IP: 192.168.15.204
+2026/10/07 12:14:58 Status: 200, Latency: 6.18s, Files: DOC01_9701019007267.pdf, IP: 192.168.15.204
+2026/10/07 12:15:07 Status: 200, Latency: 17.42s, Files: DOC01_9701019007286.pdf, IP: 192.168.15.204
+2026/10/07 12:15:30 Status: 200, Latency: 39.40s, Files: DOC01_9701019007275.pdf, IP: 192.168.15.204
+2026/10/07 12:17:22 Status: 200, Latency: 8.33s, Files: DOC01_9701019007308.pdf, IP: 192.168.15.204
+2026/10/07 12:17:56 Status: 200, Latency: 40.84s, Files: DOC01_9701019007295.pdf, IP: 192.168.15.204
+2026/10/07 12:18:25 Status: 200, Latency: 72.32s, Files: DOC01_9701019007304.pdf, IP: 192.168.15.204
+2026/10/07 12:19:04 Status: 500, Latency: 0.04s, Files: DOC01_9701019007354.pdf, IP: 192.168.15.204
+2026/10/07 12:19:10 Status: 500, Latency: 0.04s, Files: DOC01_9701019007354.pdf, IP: 192.168.15.204
+2026/10/07 12:19:12 Status: 200, Latency: 20.87s, Files: DOC01_9701019007336.pdf, IP: 192.168.15.204
+2026/10/07 12:19:20 Status: 200, Latency: 13.12s, Files: DOC01_9701019007378.pdf, IP: 192.168.15.204
+2026/10/07 12:20:14 Status: 200, Latency: 12.86s, Files: DOC01_9701019007378.pdf, IP: 192.168.15.204
+2026/10/07 12:21:29 Status: 200, Latency: 145.00s, Files: DOC01_9701019007358.pdf, IP: 192.168.15.204
+2026/10/07 13:21:32 Status: 200, Latency: 11.31s, Files: 888.pdf, IP: ::1
+2026/10/07 13:23:32 Status: 200, Latency: 5.57s, Files: DOC01_9701019007525.pdf, IP: 192.168.15.204
+2026/10/07 13:24:07 Status: 200, Latency: 8.70s, Files: DOC01_9701019007556.pdf, IP: 192.168.15.204
+2026/10/07 13:24:08 Status: 200, Latency: 8.49s, Files: DOC01_9701019007584.pdf, IP: 192.168.15.204
+2026/10/07 13:24:12 Status: 200, Latency: 11.83s, Files: DOC01_9701019007671.pdf, IP: 192.168.15.204
+2026/10/07 13:27:57 Status: 500, Latency: 0.04s, Files: DOC01_9701019008078.pdf, IP: 192.168.15.204
+2026/10/07 13:27:57 Status: 500, Latency: 0.04s, Files: DOC01_9701019008106.pdf, IP: 192.168.15.204
+2026/10/07 13:28:00 Status: 500, Latency: 3.71s, Files: DOC01_9701019008076.pdf, IP: 192.168.15.204
+2026/10/07 13:28:46 Status: 500, Latency: 0.04s, Files: DOC01_9701019008106.pdf, IP: 192.168.15.204
+2026/10/07 13:29:01 Status: 500, Latency: 0.04s, Files: DOC01_9701019008078.pdf, IP: 192.168.15.204
+2026/10/07 13:29:20 Status: 200, Latency: 11.15s, Files: DOC01_9701019005633.pdf, IP: 192.168.31.166
+2026/10/07 13:29:22 Status: 500, Latency: 3.70s, Files: DOC01_9701019008076.pdf, IP: 192.168.15.204
+2026/10/07 13:29:26 Status: 500, Latency: 0.17s, Files: DOC01_9701019008106.pdf, IP: 192.168.15.204
+2026/10/07 13:29:52 Status: 200, Latency: 194.82s, Files: DOC01_9701019000520.pdf, IP: 192.168.31.166
+2026/10/07 13:42:37 Status: 200, Latency: 11.14s, Files: 888.pdf, IP: ::1
+2026/10/07 13:58:20 Status: 200, Latency: 8.00s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 13:58:47 Status: 200, Latency: 66.70s, Files: DOC01_9701011300052.pdf, IP: 192.168.15.204
+2026/10/07 13:59:14 Status: 200, Latency: 79.06s, Files: DOC01_9701019000617.pdf, IP: 192.168.15.204
+2026/10/07 13:59:43 Status: 200, Latency: 7.62s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 14:09:20 Status: 200, Latency: 6.59s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 14:09:48 Status: 200, Latency: 31.78s, Files: sci374.pdf, IP: ::1
+2026/10/07 14:11:53 Status: 500, Latency: 0.15s, Files: DOC13_9701019002448.pdf, IP: 192.168.15.204
+2026/10/07 14:13:33 Status: 200, Latency: 14.67s, Files: DOC01_9701019001408.pdf, IP: 192.168.15.204
+2026/10/07 14:14:10 Status: 200, Latency: 3.94s, Files: DOC01_9701019001549.pdf, IP: 192.168.15.204
+2026/10/07 14:14:31 Status: 200, Latency: 25.69s, Files: DOC01_9701019001422.pdf, IP: 192.168.15.204
+2026/10/07 14:14:33 Status: 200, Latency: 15.18s, Files: DOC01_9701019001408.pdf, IP: 192.168.15.204
+2026/10/07 14:18:11 Status: 500, Latency: 9.23s, Files: DOC01_9701019003157.pdf, IP: 192.168.15.204
+2026/10/07 14:18:19 Status: 200, Latency: 8.96s, Files: DOC01_9701019003337.pdf, IP: 192.168.15.204
+2026/10/07 14:18:25 Status: 200, Latency: 16.27s, Files: DOC01_9701019003799.pdf, IP: 192.168.15.204
+2026/10/07 14:18:27 Status: 200, Latency: 17.07s, Files: DOC01_9701019003993.pdf, IP: 192.168.15.204
+2026/10/07 14:19:29 Status: 200, Latency: 14.93s, Files: DOC01_9701019003799.pdf, IP: 192.168.15.204
+2026/10/07 14:19:54 Status: 200, Latency: 15.64s, Files: DOC01_9701019003799.pdf, IP: 192.168.15.204
+2026/10/07 14:20:38 Status: 500, Latency: 0.15s, Files: DOC13_9701019006014.pdf, IP: 192.168.15.204
+2026/10/07 14:21:01 Status: 500, Latency: 0.10s, Files: DOC13_9701019007783.pdf, IP: 192.168.15.204
+2026/10/07 14:21:41 Status: 200, Latency: 3.16s, Files: DOC01_9701019001304.pdf, IP: 192.168.15.204
+2026/10/07 14:21:47 Status: 200, Latency: 10.40s, Files: DOC01_9701019001166.pdf, IP: 192.168.15.204
+2026/10/07 14:22:15 Status: 200, Latency: 2.99s, Files: DOC01_9701019002332.pdf, IP: 192.168.15.204
+2026/10/07 14:22:17 Status: 200, Latency: 6.97s, Files: DOC01_9701019002052.pdf, IP: 192.168.15.204
+2026/10/07 14:22:19 Status: 200, Latency: 6.90s, Files: DOC01_9701019002333.pdf, IP: 192.168.15.204
+2026/10/07 14:23:02 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:23:02 Status: 429, Latency: 15.01s, Files: DOC01_9701019002452.pdf, IP: 192.168.15.204
+2026/10/07 14:23:02 Status: 200, Latency: 15.75s, Files: DOC01_9701019002387.pdf, IP: 192.168.15.204
+2026/10/07 14:23:03 Status: 200, Latency: 17.06s, Files: DOC01_9701019002353.pdf, IP: 192.168.15.204
+2026/10/07 14:23:04 Status: 200, Latency: 84.49s, Files: DOC01_9701019001758.pdf, IP: 192.168.15.204
+2026/10/07 14:23:08 Status: 200, Latency: 18.90s, Files: DOC01_9701019002577.pdf, IP: 192.168.15.204
+2026/10/07 14:23:23 Status: 200, Latency: 26.75s, Files: DOC01_9701019002724.pdf, IP: 192.168.15.204
+2026/10/07 14:24:09 Status: 200, Latency: 22.86s, Files: DOC01_9701019003017.pdf, IP: 192.168.15.204
+2026/10/07 14:24:37 Status: 200, Latency: 101.66s, Files: DOC01_9701019002700.pdf, IP: 192.168.15.204
+2026/10/07 14:24:42 Status: 200, Latency: 10.26s, Files: DOC01_9701019003526.pdf, IP: 192.168.15.204
+2026/10/07 14:24:49 Status: 200, Latency: 192.62s, Files: DOC01_9701019001048.pdf, IP: 192.168.15.204
+2026/10/07 14:24:50 Status: 200, Latency: 16.96s, Files: DOC01_9701019003562.pdf, IP: 192.168.15.204
+2026/10/07 14:25:34 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:25:34 Status: 429, Latency: 15.01s, Files: DOC01_9701019004282.pdf, IP: 192.168.15.204
+2026/10/07 14:25:35 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:25:35 Status: 429, Latency: 15.04s, Files: DOC01_9701019004349.pdf, IP: 192.168.15.204
+2026/10/07 14:25:36 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:25:36 Status: 429, Latency: 15.01s, Files: DOC01_9701019004447.pdf, IP: 192.168.15.204
+2026/10/07 14:25:36 Status: 200, Latency: 17.59s, Files: DOC01_9701019003580.pdf, IP: 192.168.15.204
+2026/10/07 14:25:40 Status: 200, Latency: 68.46s, Files: DOC01_9701019003477.pdf, IP: 192.168.15.204
+2026/10/07 14:25:56 Status: 200, Latency: 37.13s, Files: DOC01_9701019003967.pdf, IP: 192.168.15.204
+2026/10/07 14:26:31 Status: 500, Latency: 0.07s, Files: DOC13_9701019007054.pdf, IP: 192.168.15.204
+2026/10/07 14:26:36 Status: 200, Latency: 5.34s, Files: DOC01_9701019007135.pdf, IP: 192.168.15.204
+2026/10/07 14:26:43 Status: 200, Latency: 10.85s, Files: DOC01_9701019007335.pdf, IP: 192.168.15.204
+2026/10/07 14:26:43 Status: 200, Latency: 13.27s, Files: DOC01_9701019006953.pdf, IP: 192.168.15.204
+2026/10/07 14:26:43 Status: 200, Latency: 10.73s, Files: DOC01_9701019007432.pdf, IP: 192.168.15.204
+2026/10/07 14:27:05 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:27:05 Status: 429, Latency: 15.04s, Files: DOC01_9701019007634.pdf, IP: 192.168.15.204
+2026/10/07 14:27:25 Status: 200, Latency: 36.33s, Files: DOC01_9701019007602.pdf, IP: 192.168.15.204
+2026/10/07 14:27:36 Status: 200, Latency: 231.22s, Files: DOC01_9701019002988.pdf, IP: 192.168.15.204
+2026/10/07 14:27:38 Status: 200, Latency: 50.60s, Files: DOC01_9701019007559.pdf, IP: 192.168.15.204
+2026/10/07 14:29:43 Status: 200, Latency: 173.91s, Files: DOC01_9701019007613.pdf, IP: 192.168.15.204
+2026/10/07 14:31:09 Status: 200, Latency: 16.04s, Files: DOC01_9701019007696.pdf, IP: 192.168.15.204
+2026/10/07 14:31:36 Status: 200, Latency: 3.38s, Files: DOC01_9701015401243.pdf, IP: 192.168.15.204
+2026/10/07 14:31:37 Status: 200, Latency: 3.12s, Files: DOC01_9701015401357.pdf, IP: 192.168.15.204
+2026/10/07 14:31:43 Status: 200, Latency: 9.25s, Files: DOC01_9701015401267.pdf, IP: 192.168.15.204
+2026/10/07 14:31:44 Status: 200, Latency: 3.79s, Files: DOC01_9701015401677.pdf, IP: 192.168.15.204
+2026/10/07 14:31:45 Status: 200, Latency: 3.73s, Files: DOC01_9701015402037.pdf, IP: 192.168.15.204
+2026/10/07 14:31:47 Status: 200, Latency: 4.91s, Files: DOC01_9701015402342.pdf, IP: 192.168.15.204
+2026/10/07 14:31:51 Status: 200, Latency: 3.21s, Files: DOC01_9701015402433.pdf, IP: 192.168.15.204
+2026/10/07 14:31:52 Status: 200, Latency: 10.83s, Files: DOC01_9701015402084.pdf, IP: 192.168.15.204
+2026/10/07 14:31:53 Status: 500, Latency: 2.64s, Files: DOC01_9701015402541.pdf, IP: 192.168.15.204
+2026/10/07 14:32:21 Status: 200, Latency: 29.62s, Files: DOC01_9701015402676.pdf, IP: 192.168.15.204
+2026/10/07 14:33:02 Status: 200, Latency: 73.06s, Files: DOC01_9701015402487.pdf, IP: 192.168.15.204
+2026/10/07 14:33:55 Status: 200, Latency: 134.72s, Files: DOC01_9701015401674.pdf, IP: 192.168.15.204
+2026/10/07 14:34:08 Status: 200, Latency: 3.10s, Files: DOC01_9701015402724.pdf, IP: 192.168.15.204
+2026/10/07 14:34:10 Status: 500, Latency: 3.29s, Files: DOC01_9701015403117.pdf, IP: 192.168.15.204
+2026/10/07 14:34:11 Status: 200, Latency: 3.86s, Files: DOC01_9701015403149.pdf, IP: 192.168.15.204
+2026/10/07 14:34:31 Status: 200, Latency: 162.64s, Files: DOC01_9701015402486.pdf, IP: 192.168.15.204
+2026/10/07 14:34:34 Status: 200, Latency: 27.52s, Files: DOC01_9701015403098.pdf, IP: 192.168.15.204
+2026/10/07 14:34:36 Status: 200, Latency: 16.21s, Files: DOC01_9701015404077.pdf, IP: 192.168.15.204
+2026/10/07 14:34:45 Status: 200, Latency: 30.34s, Files: DOC01_9701015403561.pdf, IP: 192.168.15.204
+2026/10/07 14:34:53 Status: 200, Latency: 39.58s, Files: DOC01_9701015403243.pdf, IP: 192.168.15.204
+2026/10/07 14:36:43 Status: 200, Latency: 141.78s, Files: DOC01_9701015404099.pdf, IP: 192.168.15.204
+2026/10/07 14:38:23 Status: 200, Latency: 1.74s, Files: DOC01_9701015404552.pdf, IP: 192.168.15.204
+2026/10/07 14:38:35 Status: 200, Latency: 5.05s, Files: DOC01_9701015404880.pdf, IP: 192.168.15.204
+2026/10/07 14:39:14 Status: 200, Latency: 3.02s, Files: DOC01_9701015404956.pdf, IP: 192.168.15.204
+2026/10/07 14:39:17 Status: 200, Latency: 7.41s, Files: DOC01_9701015404923.pdf, IP: 192.168.15.204
+2026/10/07 14:39:17 Status: 200, Latency: 6.78s, Files: DOC01_9701015404950.pdf, IP: 192.168.15.204
+2026/10/07 14:39:17 Status: 200, Latency: 5.44s, Files: DOC01_9701015405182.pdf, IP: 192.168.15.204
+2026/10/07 14:39:21 Status: 200, Latency: 9.83s, Files: DOC01_9701015405015.pdf, IP: 192.168.15.204
+2026/10/07 14:39:24 Status: 200, Latency: 3.24s, Files: DOC01_9701015405384.pdf, IP: 192.168.15.204
+2026/10/07 14:39:26 Status: 200, Latency: 5.20s, Files: DOC01_9701015405448.pdf, IP: 192.168.15.204
+2026/10/07 14:39:27 Status: 200, Latency: 10.92s, Files: DOC01_9701015405298.pdf, IP: 192.168.15.204
+2026/10/07 14:39:32 Status: 200, Latency: 9.90s, Files: DOC01_9701015405463.pdf, IP: 192.168.15.204
+2026/10/07 14:39:39 Status: 200, Latency: 16.83s, Files: DOC01_9701015405464.pdf, IP: 192.168.15.204
+2026/10/07 14:39:57 Status: 500, Latency: 1.03s, Files: DOC01_9701015405917.pdf, IP: 192.168.15.204
+2026/10/07 14:39:59 Status: 200, Latency: 4.29s, Files: DOC01_9701015405766.pdf, IP: 192.168.15.204
+2026/10/07 14:40:05 Status: 200, Latency: 9.27s, Files: DOC01_9701015405886.pdf, IP: 192.168.15.204
+2026/10/07 14:41:26 Status: 200, Latency: 3.08s, Files: DOC01_9701015406184.pdf, IP: 192.168.15.204
+2026/10/07 14:41:46 Status: 200, Latency: 29.14s, Files: DOC01_9701015406010.pdf, IP: 192.168.15.204
+2026/10/07 14:41:58 Status: 200, Latency: 39.49s, Files: DOC01_9701015406135.pdf, IP: 192.168.15.204
+2026/10/07 14:42:47 Status: 200, Latency: 4.33s, Files: DOC01_9701015406592.pdf, IP: 192.168.15.204
+2026/10/07 14:42:48 Status: 200, Latency: 205.13s, Files: DOC01_9701015405537.pdf, IP: 192.168.15.204
+2026/10/07 14:42:51 Status: 200, Latency: 6.86s, Files: DOC01_9701015406626.pdf, IP: 192.168.15.204
+2026/10/07 14:42:55 Status: 200, Latency: 2.68s, Files: DOC01_9701015406704.pdf, IP: 192.168.15.204
+2026/10/07 14:42:56 Status: 200, Latency: 3.06s, Files: DOC01_9701015406718.pdf, IP: 192.168.15.204
+2026/10/07 14:43:25 Status: 200, Latency: 44.13s, Files: DOC01_9701015406497.pdf, IP: 192.168.15.204
+2026/10/07 14:44:28 Status: 200, Latency: 30.65s, Files: sci374.pdf, IP: ::1
+2026/10/07 14:44:44 Status: 200, Latency: 3.56s, Files: DOC01_9701015406966.pdf, IP: 192.168.15.204
+2026/10/07 14:44:58 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:44:58 Status: 429, Latency: 15.01s, Files: DOC01_9701015407279.pdf, IP: 192.168.15.204
+2026/10/07 14:45:01 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:01 Status: 429, Latency: 15.00s, Files: DOC01_9701015407396.pdf, IP: 192.168.15.204
+2026/10/07 14:45:09 Status: 200, Latency: 32.04s, Files: DOC01_9701015406903.pdf, IP: 192.168.15.204
+2026/10/07 14:45:16 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:16 Status: 429, Latency: 15.02s, Files: DOC01_9701015407660.pdf, IP: 192.168.15.204
+2026/10/07 14:45:30 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:30 Status: 429, Latency: 15.02s, Files: DOC01_9701019007675.pdf, IP: 192.168.15.204
+2026/10/07 14:45:48 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:48 Status: 429, Latency: 15.01s, Files: DOC01_9701015407696.pdf, IP: 192.168.15.204
+2026/10/07 14:45:49 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:49 Status: 429, Latency: 15.01s, Files: DOC01_9701015407837.pdf, IP: 192.168.15.204
+2026/10/07 14:45:51 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:51 Status: 429, Latency: 15.02s, Files: DOC01_9701015407874.pdf, IP: 192.168.15.204
+2026/10/07 14:45:53 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:53 Status: 429, Latency: 15.06s, Files: DOC13_9701015407881.pdf, IP: 192.168.15.204
+2026/10/07 14:45:58 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:45:58 Status: 429, Latency: 15.06s, Files: DOC01_9701015407938.pdf, IP: 192.168.15.204
+2026/10/07 14:46:01 Status: 200, Latency: 62.07s, Files: DOC01_9701015407568.pdf, IP: 192.168.15.204
+2026/10/07 14:46:01 Status: 200, Latency: 78.64s, Files: DOC01_9701015407142.pdf, IP: 192.168.15.204
+2026/10/07 14:46:03 Status: 200, Latency: 87.52s, Files: DOC01_9701015406898.pdf, IP: 192.168.15.204
+2026/10/07 14:46:25 Status: 200, Latency: 4.55s, Files: DOC01_9701015408933.pdf, IP: 192.168.15.204
+2026/10/07 14:46:51 Status: 200, Latency: 133.51s, Files: DOC01_9701015406946.pdf, IP: 192.168.15.204
+2026/10/07 14:47:04 Status: 200, Latency: 43.88s, Files: DOC01_9701015408918.pdf, IP: 192.168.15.204
+2026/10/07 14:47:23 Status: 200, Latency: 7.08s, Files: DOC01_9701015409400.pdf, IP: 192.168.15.204
+2026/10/07 14:47:26 Status: 200, Latency: 9.79s, Files: DOC01_9701015409129.pdf, IP: 192.168.15.204
+2026/10/07 14:47:30 Status: 200, Latency: 14.87s, Files: DOC01_9701015409417.pdf, IP: 192.168.15.204
+2026/10/07 14:47:39 Status: 200, Latency: 21.87s, Files: DOC01_9701015409050.pdf, IP: 192.168.15.204
+2026/10/07 14:51:13 Status: 200, Latency: 3.50s, Files: DOC01_9701015409611.pdf, IP: 192.168.15.204
+2026/10/07 14:51:14 Status: 200, Latency: 4.75s, Files: DOC01_9701015409651.pdf, IP: 192.168.15.204
+2026/10/07 14:51:22 Status: 200, Latency: 7.86s, Files: DOC01_9701015409679.pdf, IP: 192.168.15.204
+2026/10/07 14:51:27 Status: 200, Latency: 19.68s, Files: DOC01_9701015409473.pdf, IP: 192.168.15.204
+2026/10/07 14:51:33 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:51:33 Status: 429, Latency: 15.01s, Files: DOC01_9701015409836.pdf, IP: 192.168.15.204
+2026/10/07 14:51:33 Status: 200, Latency: 18.22s, Files: DOC01_9701015409721.pdf, IP: 192.168.15.204
+2026/10/07 14:51:39 Status: 200, Latency: 13.04s, Files: DOC01_9701015409862.pdf, IP: 192.168.15.204
+2026/10/07 14:51:48 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:51:48 Status: 429, Latency: 15.01s, Files: DOC01_9701015410026.pdf, IP: 192.168.15.204
+2026/10/07 14:51:51 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:51:51 Status: 429, Latency: 15.05s, Files: DOC01_9701015410119.pdf, IP: 192.168.15.204
+2026/10/07 14:51:54 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:51:54 Status: 429, Latency: 15.01s, Files: DOC01_9701015410237.pdf, IP: 192.168.15.204
+2026/10/07 14:51:55 Status: 200, Latency: 26.85s, Files: DOC01_9701015410021.pdf, IP: 192.168.15.204
+2026/10/07 14:52:05 Status: 200, Latency: 16.72s, Files: DOC01_9701015410264.pdf, IP: 192.168.15.204
+2026/10/07 14:52:40 Status: 200, Latency: 83.28s, Files: DOC01_9701015409830.pdf, IP: 192.168.15.204
+2026/10/07 14:52:46 Status: 200, Latency: 26.29s, Files: DOC01_9701015410383.pdf, IP: 192.168.15.204
+2026/10/07 14:52:48 Status: 200, Latency: 334.55s, Files: DOC01_9701015409426.pdf, IP: 192.168.15.204
+2026/10/07 14:52:53 Status: 200, Latency: 18.87s, Files: DOC01_9701019000177.pdf, IP: 192.168.15.204
+2026/10/07 14:52:54 Status: 200, Latency: 5.58s, Files: DOC01_9701019000182.pdf, IP: 192.168.15.204
+2026/10/07 14:53:01 Status: 200, Latency: 4.03s, Files: DOC01_9701019000553.pdf, IP: 192.168.15.204
+2026/10/07 14:53:07 Status: 200, Latency: 10.14s, Files: DOC01_9701019000525.pdf, IP: 192.168.15.204
+2026/10/07 14:53:12 Status: 200, Latency: 13.79s, Files: DOC01_9701019000555.pdf, IP: 192.168.15.204
+2026/10/07 14:53:17 Status: 200, Latency: 17.99s, Files: DOC01_9701019000603.pdf, IP: 192.168.15.204
+2026/10/07 14:53:17 Status: 500, Latency: 13.90s, Files: DOC13_9701019000692.pdf, IP: 192.168.15.204
+2026/10/07 14:53:20 Status: 200, Latency: 16.84s, Files: DOC01_9701019000678.pdf, IP: 192.168.15.204
+2026/10/07 14:53:35 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:53:35 Status: 429, Latency: 15.06s, Files: DOC01_9701019000768.pdf, IP: 192.168.15.204
+2026/10/07 14:53:35 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:53:35 Status: 429, Latency: 15.01s, Files: DOC01_9701019000816.pdf, IP: 192.168.15.204
+2026/10/07 14:53:36 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:53:36 Status: 429, Latency: 15.02s, Files: DOC01_9701019000873.pdf, IP: 192.168.15.204
+2026/10/07 14:53:40 Status: 200, Latency: 67.50s, Files: DOC01_9701019000168.pdf, IP: 192.168.15.204
+2026/10/07 14:54:18 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:54:18 Status: 429, Latency: 15.01s, Files: DOC01_9701019001345.pdf, IP: 192.168.15.204
+2026/10/07 14:54:20 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:54:20 Status: 429, Latency: 15.01s, Files: DOC01_9701019001386.pdf, IP: 192.168.15.204
+2026/10/07 14:54:40 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:54:40 Status: 429, Latency: 15.02s, Files: DOC01_9701019001386.pdf, IP: 192.168.15.204
+2026/10/07 14:54:48 Status: 200, Latency: 89.72s, Files: DOC01_9701019000758.pdf, IP: 192.168.15.204
+2026/10/07 14:55:07 Status: 200, Latency: 239.28s, Files: DOC01_9701015409484.pdf, IP: 192.168.15.204
+2026/10/07 14:55:27 Status: 200, Latency: 84.48s, Files: DOC01_9701019001340.pdf, IP: 192.168.15.204
+2026/10/07 14:56:01 Status: 200, Latency: 8.33s, Files: DOC01_9701019000768.pdf, IP: 192.168.15.204
+2026/10/07 14:56:02 Status: 200, Latency: 8.50s, Files: DOC01_9701019000816.pdf, IP: 192.168.15.204
+2026/10/07 14:56:09 Status: 200, Latency: 8.72s, Files: DOC01_9701019000892.pdf, IP: 192.168.15.204
+2026/10/07 14:56:11 Status: 200, Latency: 16.99s, Files: DOC01_9701019000873.pdf, IP: 192.168.15.204
+2026/10/07 14:56:16 Status: 200, Latency: 8.49s, Files: DOC01_9701019001195.pdf, IP: 192.168.15.204
+2026/10/07 14:56:19 Status: 200, Latency: 12.80s, Files: DOC01_9701019001119.pdf, IP: 192.168.15.204
+2026/10/07 14:56:32 Status: 200, Latency: 16.30s, Files: DOC01_9701019001345.pdf, IP: 192.168.15.204
+2026/10/07 14:56:38 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:56:38 Status: 429, Latency: 15.02s, Files: DOC01_9701019001551.pdf, IP: 192.168.15.204
+2026/10/07 14:56:42 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:56:42 Status: 429, Latency: 15.01s, Files: DOC01_9701019001625.pdf, IP: 192.168.15.204
+2026/10/07 14:56:44 Status: 200, Latency: 32.29s, Files: DOC01_9701019001298.pdf, IP: 192.168.15.204
+2026/10/07 14:56:53 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:56:53 Status: 429, Latency: 15.01s, Files: DOC01_9701019001683.pdf, IP: 192.168.15.204
+2026/10/07 14:56:57 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:56:57 Status: 429, Latency: 15.02s, Files: DOC01_9701019001731.pdf, IP: 192.168.15.204
+2026/10/07 14:57:10 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:57:10 Status: 429, Latency: 15.01s, Files: DOC01_9701019001822.pdf, IP: 192.168.15.204
+2026/10/07 14:57:11 Concurrency limit exceeded - request timed out for IP: 192.168.15.204
+2026/10/07 14:57:11 Status: 429, Latency: 15.01s, Files: DOC01_9701019001870.pdf, IP: 192.168.15.204
+2026/10/07 14:57:16 Status: 200, Latency: 64.50s, Files: DOC01_9701019001237.pdf, IP: 192.168.15.204
+2026/10/07 14:57:45 Status: 200, Latency: 267.58s, Files: DOC01_9701019000742.pdf, IP: 192.168.15.204
+2026/10/07 14:57:47 Status: 200, Latency: 75.31s, Files: DOC01_9701019001627.pdf, IP: 192.168.15.204
+2026/10/07 14:57:47 Status: 500, Latency: 5.00s, Files: DOC01_9701019002204.pdf, IP: 192.168.15.204
+2026/10/07 14:57:51 Status: 200, Latency: 9.26s, Files: DOC01_9701019002203.pdf, IP: 192.168.15.204
+2026/10/07 14:58:03 Status: 200, Latency: 11.83s, Files: DOC01_9701019002339.pdf, IP: 192.168.15.204
+2026/10/07 14:58:03 Status: 500, Latency: 11.38s, Files: DOC01_9701019002345.pdf, IP: 192.168.15.204
+2026/10/07 14:58:12 Status: 200, Latency: 29.13s, Files: DOC01_9701019002241.pdf, IP: 192.168.15.204
+2026/10/07 14:58:23 Status: 200, Latency: 124.46s, Files: DOC01_9701019001442.pdf, IP: 192.168.15.204
+2026/10/07 14:58:30 Status: 500, Latency: 5.86s, Files: DOC01_9701019002452.pdf, IP: 192.168.15.204
+2026/10/07 14:58:32 Status: 200, Latency: 11.71s, Files: DOC01_9701019002365.pdf, IP: 192.168.15.204
+2026/10/07 14:58:42 Rate limit exceeded for IP: 192.168.15.204
+2026/10/07 14:58:42 Rate limit exceeded for IP: 192.168.15.204
+2026/10/07 14:58:42 Rate limit exceeded for IP: 192.168.15.204
+2026/10/07 14:58:50 Status: 200, Latency: 8.29s, Files: DOC01_9701019002587.pdf, IP: 192.168.15.204
+2026/10/07 14:58:53 Status: 200, Latency: 10.62s, Files: DOC01_9701019002638.pdf, IP: 192.168.15.204
+2026/10/07 14:58:53 Status: 200, Latency: 11.48s, Files: DOC01_9701019002806.pdf, IP: 192.168.15.204
+2026/10/07 14:59:07 Status: 200, Latency: 24.55s, Files: DOC01_9701019002837.pdf, IP: 192.168.15.204
+2026/10/07 14:59:10 Status: 200, Latency: 28.06s, Files: DOC01_9701019002416.pdf, IP: 192.168.15.204
+2026/10/07 15:03:20 Status: 200, Latency: 25.35s, Files: DOC01_9701013500391.pdf, IP: 192.168.15.204
+2026/10/07 15:08:45 Status: 500, Latency: 0.02s, Files: DOC01_9701019002877.pdf, IP: 192.168.15.204
+2026/10/07 15:09:02 Status: 200, Latency: 17.32s, Files: DOC01_9701019002874.pdf, IP: 192.168.15.204
+2026/10/07 15:10:24 Status: 500, Latency: 0.03s, Files: DOC01_9701019003348.pdf, IP: 192.168.15.204
+2026/10/07 15:10:40 Status: 200, Latency: 4.81s, Files: DOC01_9701019003748.pdf, IP: 192.168.15.204
+2026/10/07 15:10:44 Status: 200, Latency: 11.62s, Files: DOC01_9701019003591.pdf, IP: 192.168.15.204
+2026/10/07 15:10:44 Status: 500, Latency: 4.29s, Files: DOC01_9701019003783.pdf, IP: 192.168.15.204
+2026/10/07 15:10:45 Status: 500, Latency: 3.78s, Files: DOC13_9701019003786.pdf, IP: 192.168.15.204
+2026/10/07 15:10:48 Status: 200, Latency: 14.05s, Files: DOC01_9701019003595.pdf, IP: 192.168.15.204
+2026/10/07 15:10:49 Status: 200, Latency: 4.73s, Files: DOC01_9701019003892.pdf, IP: 192.168.15.204
+2026/10/07 15:11:24 Status: 200, Latency: 60.68s, Files: DOC01_9701019003345.pdf, IP: 192.168.15.204
+2026/10/07 15:13:51 Status: 200, Latency: 195.85s, Files: DOC01_9701019003763.pdf, IP: 192.168.15.204
+2026/10/07 16:10:19 Status: 200, Latency: 6.78s, Files: ปพ ไทยไม่ตรง.pdf, IP: ::1
+2026/10/07 16:10:41 Status: 200, Latency: 31.84s, Files: sci374.pdf, IP: ::1
+2026/10/08 10:18:52 Status: 500, Latency: 0.35s, Files: DOC13_9701019002876.pdf, IP: 192.168.15.204
+2026/10/08 10:18:53 Status: 500, Latency: 0.04s, Files: DOC13_9701019002931.pdf, IP: 192.168.15.204
+2026/10/08 10:19:05 Status: 200, Latency: 17.23s, Files: DOC01_9701019002842.pdf, IP: 192.168.15.204
+2026/10/08 10:21:41 Status: 200, Latency: 165.33s, Files: DOC01_9701019002952.pdf, IP: 192.168.15.204
+2026/10/08 10:38:49 Status: 200, Latency: 78.00s, Files: DOC01_9701019001532.pdf, IP: 192.168.15.204
+2026/10/08 11:39:10 Status: 200, Latency: 3.94s, Files: DOC01_9701011301277.pdf, IP: 192.168.15.204
+2026/10/08 13:22:19 Status: 200, Latency: 45.25s, Files: DOC01_9701019000025.pdf, IP: 192.168.15.204
+2026/10/08 13:22:44 Status: 200, Latency: 14.06s, Files: DOC01_9701019000049.pdf, IP: 192.168.15.204
+2026/10/08 13:23:03 Status: 200, Latency: 124.93s, Files: DOC01_9701019000005.pdf, IP: 192.168.15.204
+2026/10/08 13:23:16 Status: 200, Latency: 7.71s, Files: DOC01_9701019000084.pdf, IP: 192.168.15.204
+2026/10/08 13:23:24 Status: 500, Latency: 0.07s, Files: DOC01_9701019000094.pdf, IP: 192.168.15.204
+2026/10/08 13:24:31 Status: 200, Latency: 11.73s, Files: DOC01_9701019000107.pdf, IP: 192.168.15.204
+2026/10/08 13:24:33 Status: 200, Latency: 15.70s, Files: DOC01_9701019000106.pdf, IP: 192.168.15.204
+2026/10/08 13:25:08 Status: 200, Latency: 9.61s, Files: DOC01_9701019000138.pdf, IP: 192.168.15.204
+2026/10/08 13:25:09 Status: 500, Latency: 10.82s, Files: DOC01_9701019000139.pdf, IP: 192.168.15.204
+2026/10/08 13:25:49 Status: 500, Latency: 0.03s, Files: DOC01_9701019000198.pdf, IP: 192.168.15.204
+2026/10/08 13:26:30 Status: 200, Latency: 26.63s, Files: DOC01_9701019000218.pdf, IP: 192.168.15.204
+2026/10/08 13:26:38 Status: 200, Latency: 7.00s, Files: DOC01_9701019000254.pdf, IP: 192.168.15.204
+2026/10/08 13:26:53 Status: 200, Latency: 81.39s, Files: DOC01_9701019000172.pdf, IP: 192.168.15.204
+2026/10/08 13:27:00 Status: 500, Latency: 0.10s, Files: DOC13_9701019000287.pdf, IP: 192.168.15.204
+2026/10/08 13:27:11 Status: 200, Latency: 44.77s, Files: DOC01_9701019000246.pdf, IP: 192.168.15.204
+2026/10/08 13:27:29 Status: 200, Latency: 8.17s, Files: DOC01_9701019000312.pdf, IP: 192.168.15.204
+2026/10/08 13:27:54 Status: 200, Latency: 15.46s, Files: DOC01_9701019000332.pdf, IP: 192.168.15.204
+2026/10/08 13:28:40 Status: 500, Latency: 0.06s, Files: DOC01_9701019000413.pdf, IP: 192.168.15.204
+2026/10/08 13:28:46 Status: 200, Latency: 6.97s, Files: DOC01_9701019000412.pdf, IP: 192.168.15.204
+2026/10/08 13:29:27 Status: 200, Latency: 71.29s, Files: DOC01_9701019000378.pdf, IP: 192.168.15.204
+2026/10/08 13:29:53 Status: 200, Latency: 41.86s, Files: DOC01_9701019000458.pdf, IP: 192.168.15.204
+2026/10/08 13:29:53 Status: 200, Latency: 255.04s, Files: DOC01_9701019000176.pdf, IP: 192.168.15.204
+2026/10/08 13:30:44 Status: 200, Latency: 118.84s, Files: DOC01_9701019000425.pdf, IP: 192.168.15.204
+2026/10/08 13:30:53 Status: 200, Latency: 2.69s, Files: DOC01_9701019000582.pdf, IP: 192.168.15.204
+2026/10/08 13:31:02 Status: 200, Latency: 4.29s, Files: DOC01_9701019000589.pdf, IP: 192.168.15.204
+2026/10/08 13:55:24 Status: 200, Latency: 4.93s, Files: DOC01_9701019000624.pdf, IP: 192.168.15.204
+2026/10/14 13:48:47 Status: 200, Latency: 123.82s, Files: DOC01_9701019000030.pdf, IP: 192.168.15.204
+2026/10/19 10:53:51 Status: 200, Latency: 31.52s, Files: sci374.pdf, IP: ::1
+2026/10/19 10:56:00 Status: 200, Latency: 9.52s, Files: all400.pdf, IP: ::1
+2026/10/19 10:57:27 Status: 200, Latency: 9.33s, Files: all400.pdf, IP: ::1
+2026/10/19 11:06:09 Status: 200, Latency: 119.36s, Files: DOC01_9701019000005.pdf, IP: 192.168.15.204
+2026/10/19 11:07:54 Status: 200, Latency: 120.43s, Files: DOC01_9701019000005.pdf, IP: 192.168.15.204
+2026/10/19 14:01:59 Status: 200, Latency: 22.49s, Files: 22.pdf, IP: ::1
